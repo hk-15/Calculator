@@ -4,30 +4,37 @@ Console.WriteLine("Welcome to the calculator.");
 Console.WriteLine("==========================");
 Console.Write("Please enter an operator: ");
 string op = Console.ReadLine();
-Console.Write("Please enter a number: ");
-int firstNumber = int.Parse(Console.ReadLine());
-Console.Write("Please enter another number: ");
-int secondNumber = int.Parse(Console.ReadLine());
-int result;
-switch (op)
+Console.Write("How many numbers do you want to " + op + "?: ");
+int[] numbers = new int[int.Parse(Console.ReadLine())];
+
+for (int i = 0; i < numbers.Length; i++)
 {
-    case "+":
-        result = firstNumber + secondNumber;
-        Console.WriteLine("The result is: " + result);
-        break;
-    case "-":
-        result = firstNumber - secondNumber;
-        Console.WriteLine("The result is: " + result);
-        break;
-    case "*":
-        result = firstNumber * secondNumber;
-        Console.WriteLine("The result is: " + result);
-        break;
-    case "/":
-        result = firstNumber / secondNumber;
-        Console.WriteLine("The result is: " + result);
-        break;
-    default:
-        Console.WriteLine("Invalid operator");
-        break;
+    Console.Write("Please enter number " + (i + 1) + ": ");
+    numbers[i] = int.Parse(Console.ReadLine());
 }
+
+int result = 0;
+
+for (int i = 0; i < numbers.Length; i++)
+{
+    switch (op)
+    {
+        case "+":
+            result += numbers[i];
+            break;
+        case "-":
+            result -= numbers[i];
+            break;
+        case "*":
+            result *= numbers[i];
+            break;
+        case "/":
+            result /= numbers[i];
+            break;
+        default:
+            Console.WriteLine("Please enter a valid operator.");
+            break;
+    }
+}
+
+Console.WriteLine("The result is: " + result);
